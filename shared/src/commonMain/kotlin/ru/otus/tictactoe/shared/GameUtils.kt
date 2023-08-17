@@ -18,7 +18,7 @@ internal fun Board.isFull(): Boolean = all { it == PLAYER_X || it == PLAYER_O }
 /**
  * Copies board to the new instance
  */
-private fun Board.copy(): Board = map { it }
+internal fun Board.copy(): Board = map { it }
 
 /**
  * Choose random move from give
