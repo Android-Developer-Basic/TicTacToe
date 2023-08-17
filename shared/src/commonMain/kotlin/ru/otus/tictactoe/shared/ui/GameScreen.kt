@@ -1,4 +1,4 @@
-package ru.otus.tictactoe.android.ui
+package ru.otus.tictactoe.shared.ui
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
@@ -12,23 +12,20 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
+import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.otus.tictactoe.shared.Board
 import ru.otus.tictactoe.shared.GameState
-import ru.otus.tictactoe.shared.PLAYER_O
-import ru.otus.tictactoe.shared.PLAYER_X
 import ru.otus.tictactoe.shared.gameResult
 import ru.otus.tictactoe.shared.isComplete
 import ru.otus.tictactoe.shared.isFull
@@ -38,7 +35,7 @@ fun GameScreen(gameState: GameState, onCellClick: (Int) -> Unit, onRestart: () -
 
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(modifier = Modifier.height(20.dp))
-        Text("Tic-Tac-Toe")
+        Text("Tic-Tac-Toe", style = TextStyle(fontSize = 24.sp))
 
         Spacer(modifier = Modifier.height(20.dp))
         ButtonGrid(board = gameState.board, onclick = onCellClick)
@@ -48,13 +45,13 @@ fun GameScreen(gameState: GameState, onCellClick: (Int) -> Unit, onRestart: () -
 
         Spacer(modifier = Modifier.height(20.dp))
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-            Text("Turn:")
-            Text(gameState.nextPlayer)
+            Text("Turn:", style = TextStyle(fontSize = 24.sp))
+            Text(gameState.nextPlayer, style = TextStyle(fontSize = 24.sp))
         }
 
         if (gameState.board.isFull() || gameState.board.isComplete()) {
             Spacer(modifier = Modifier.height(20.dp))
-            Text(gameState.board.gameResult())
+            Text(gameState.board.gameResult(), style = TextStyle(fontSize = 24.sp))
         }
     }
 }
@@ -116,20 +113,4 @@ fun ResetButton(onClick: () -> Unit) {
             modifier = Modifier.fillMaxWidth()
         )
     }
-}
-
-@Preview
-@Composable fun GameScreenPreview() {
-    GameScreen(
-        GameState(
-            board = listOf(
-                PLAYER_X, PLAYER_O, PLAYER_X,
-                PLAYER_O, PLAYER_X, PLAYER_O,
-                PLAYER_O, PLAYER_X, PLAYER_O
-            ),
-            nextPlayer = PLAYER_X
-        ),
-        { },
-        { }
-    )
 }
