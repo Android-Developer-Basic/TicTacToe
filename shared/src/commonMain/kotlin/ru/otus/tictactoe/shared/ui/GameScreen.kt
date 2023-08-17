@@ -29,13 +29,14 @@ import ru.otus.tictactoe.shared.GameState
 import ru.otus.tictactoe.shared.gameResult
 import ru.otus.tictactoe.shared.isComplete
 import ru.otus.tictactoe.shared.isFull
+import ru.otus.tictactoe.shared.platform
 
 @Composable
 fun GameScreen(gameState: GameState, onCellClick: (Int) -> Unit, onRestart: () -> Unit) {
 
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(modifier = Modifier.height(20.dp))
-        Text("Tic-Tac-Toe", style = TextStyle(fontSize = 24.sp))
+        Text("Tic-Tac-Toe - $platform", style = TextStyle(fontSize = 24.sp))
 
         Spacer(modifier = Modifier.height(20.dp))
         ButtonGrid(board = gameState.board, onclick = onCellClick)
