@@ -13,7 +13,12 @@ const val PLAYER_O = "O"
 /**
  * Checks if board is full and there are no more turns
  */
-internal fun Board.isFull(): Boolean = all { it == PLAYER_X || it == PLAYER_O }
+fun Board.isFull(): Boolean = all { it == PLAYER_X || it == PLAYER_O }
+
+/**
+ * Checks if board is won by any player
+ */
+fun Board.isComplete(): Boolean = isGameWon(PLAYER_X) || isGameWon(PLAYER_O)
 
 /**
  * Copies board to the new instance
@@ -97,7 +102,7 @@ internal fun Board.isGameWon(player: String): Boolean = when {
 /**
  * Human-readable game result
  */
-internal fun Board.gameResult(): String = when {
+fun Board.gameResult(): String = when {
     isGameWon(PLAYER_X) -> "You Won!"
     isGameWon(PLAYER_O) -> "COMPUTER Won!"
     else -> "Tie"

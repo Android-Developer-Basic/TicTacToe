@@ -17,6 +17,11 @@ fun GameState.reduce(index: Int, player: String): GameState {
         return this
     }
 
+    // Check if game is not over
+    if (board.isFull() || board.isComplete()) {
+        return this
+    }
+
     return GameState(
         board.copy().toMutableList().apply { this[index] = player },
         if (PLAYER_X == player) PLAYER_O else PLAYER_X
